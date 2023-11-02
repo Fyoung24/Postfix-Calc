@@ -4,6 +4,10 @@ CZ
 FY
  */
 
-public class PostfixCalculator {
+import java.util.Scanner;
 
+public class PostfixCalculator {
+    public static void main(String[] args) {
+
+    }
 }
