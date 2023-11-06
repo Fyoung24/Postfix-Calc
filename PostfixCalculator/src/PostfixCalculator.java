@@ -8,64 +8,58 @@ import java.util.Scanner;
 
 public class PostfixCalculator {
 
-    Stack stackReg;
+    Stack stackReg; // Stack to store values
 
-
-    public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        System.out.println("Please enter an expression in postfix notation (separated by spaces): ");
-        String input = s.nextLine();
-
-    }
-
-
-
-
-    public static int Calculations (Stack stackReg, String input) {
+    public static int Calculations(Stack stackReg, String input) {
         int firstNum = 0;
         int secondNum = 0;
         String[] array = null;
 
-        for(int i = 0; i < input.length(); i++) {
-            array = input.split(" ");
-        }
+        // Split the input string into an array of tokens based on spaces
+        array = input.split(" ");
+
+        // Iterate through the array of tokens
         for (int i = 0; i < array.length; i++) {
-            if (array[i].equals("+") || array[i].equals("-") || array[i].equals("*") || array[i].equals("/") ) {
+            if (array[i].equals("+") || array[i].equals("-") || array[i].equals("*") || array[i].equals("/")) {
+                // If the char is an operator, pop the last two values from the stack and perform the operation
                 firstNum = (int) stackReg.pop();
                 secondNum = (int) stackReg.pop();
-                switch(array[i]) {
+
+                switch (array[i]) {
                     case "+": {
+                        // Add the two values and push the result back onto the stack
                         int newNum = firstNum + secondNum;
                         stackReg.push(newNum);
                         break;
                     }
-
                     case "-": {
+                        // Subtract the two values and push the result back onto the stack
                         int newNum = firstNum - secondNum;
                         stackReg.push(newNum);
                         break;
                     }
-
                     case "*": {
+                        // Multiply the two values and push the result back onto the stack
                         int newNum = firstNum * secondNum;
                         stackReg.push(newNum);
                         break;
                     }
-
                     case "/": {
+                        // Divide the two values and push the result back onto the stack
                         int newNum = firstNum / secondNum;
                         stackReg.push(newNum);
                         break;
                     }
                 }
             } else {
+                // If the token is a number, push it onto the stack
                 stackReg.push(Integer.parseInt(array[i]));
             }
         }
+
+        // The result is at the top of the stack, so return it
         return (int) stackReg.peek();
-
     }
-
 }
 // input.charAt(i)
 // Integer.parseInt(input.substring(i))
