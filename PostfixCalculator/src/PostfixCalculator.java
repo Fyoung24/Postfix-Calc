@@ -4,21 +4,32 @@ CZ
 FY
  */
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class PostfixCalculator {
 
     Stack stackReg;
+    String input;
 
 
-    public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        System.out.println();
-        String input = s.nextLine();
+    public void loadTxt () {
+        try {
+            InputStream is = getClass().getResourceAsStream("/txtFile/Postfix_Test.txt");
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+            String input = br.readLine();
+
+            br.close();
+
+        } catch (Exception e) {
+
+        }
+
 
     }
-
-
 
 
     public static int Calculations (Stack stackReg, String input) {
